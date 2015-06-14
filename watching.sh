@@ -4,9 +4,10 @@ width=384
 height=288
 
 if [ ! -d /sys/class/gpio/gpio${gpio} ]; then
-  value=/sys/class/gpio/gpio${gpio}/value
-  prev_value=`cat $value`
+  echo ${gpio} > /sys/class/gpio/export
 fi
+value=/sys/class/gpio/gpio${gpio}/value
+prev_value=`cat $value`
 
 while :
 do
