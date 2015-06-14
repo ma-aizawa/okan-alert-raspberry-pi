@@ -16,6 +16,7 @@ do
     if [ ${current_value} -eq 1 ]; then
       now=`date +%Y%m%d%H%M%S`
       raspistill -o $now.jpg -w $width -h $height -t 1 -vf -hf
+      echo "watching ${now}"
     fi
   fi
   prev_value=${current_value}
