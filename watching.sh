@@ -3,6 +3,8 @@ dulation=1
 width=384
 height=288
 
+tmp_tmp_tmp_dir=/var/tmp/
+
 if [ ! -d /sys/class/gpio/gpio${gpio} ]; then
   echo ${gpio} > /sys/class/gpio/export
 fi
@@ -15,8 +17,9 @@ do
   if [ ${prev_value} -eq 0 ]; then
     if [ ${current_value} -eq 1 ]; then
       now=`date +%Y%m%d%H%M%S`
-      raspistill -o $now.jpg -w $width -h $height -t 1 -vf -hf
+      raspistill -o ${tmp_dir}${now}.jpg -w $width -h $height -t 1 -vf -hf
       echo "watching ${now}"
+      rm ${tmp_dir}${now}.jpg
     fi
   fi
   prev_value=${current_value}
