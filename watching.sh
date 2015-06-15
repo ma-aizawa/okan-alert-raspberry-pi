@@ -19,6 +19,9 @@ do
       now=`date +%Y%m%d%H%M%S`
       raspistill -o ${tmp_dir}${now}.jpg -w $width -h $height -t 1 -vf -hf
       echo "watching ${now}"
+      if [ -n ${UPLOAD_URL} ]; then
+        curl ${UPLOAD_URL} -X POST -F "file=@${tmp_dir}${now}.jpg"
+      fi
       rm ${tmp_dir}${now}.jpg
     fi
   fi
