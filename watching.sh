@@ -20,7 +20,8 @@ do
       raspistill -o ${tmp_dir}${now}.jpg -w $width -h $height -t 1 -vf -hf
       echo "watching ${now}"
       if [ -n ${UPLOAD_URL} ]; then
-        curl ${UPLOAD_URL} -X POST -F "file=@${tmp_dir}${now}.jpg"
+        cp ${tmp_dir}${now}.jpg "${tmp_dir}okan.jpg"
+        curl ${UPLOAD_URL} -X POST -F "file=@${tmp_dir}okan.jpg"
       fi
       rm ${tmp_dir}${now}.jpg
     fi
